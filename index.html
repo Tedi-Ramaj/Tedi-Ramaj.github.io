@@ -22,26 +22,68 @@
     </nav>
 
     <script>
-        const canvas = document.getElementById('mathCanvas');
-        const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('mathCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const circles = [];
+
+    // Create Circle objects with random positions and velocities
+    function createCircles(numCircles) {
+        for (let i = 0; i < numCircles; i++) {
+            const circle = {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                dx: (Math.random() - 0.5) * 2, // random velocity in x
+                dy: (Math.random() - 0.5) * 2  // random velocity in y
+            };
+            circles.push(circle);
         }
+    }
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+    createCircles(1000);
 
+    // Function to update the position of circles
+    function updateCircles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
         ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
-        for (let i = 0; i < 1000; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            const radius = Math.random() * 2;
+
+        circles.forEach(circle => {
+            // Draw the circle
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, true);
             ctx.stroke();
-        }
-    </script>
+
+            // Update the circle's position
+            circle.x += circle.dx;
+            circle.y += circle.dy;
+
+            // Bounce off the edges of the canvas
+            if (circle.x + circle.radius > canvas.width || circle.x - circle.radius < 0) {
+                circle.dx = -circle.dx;
+            }
+            if (circle.y + circle.radius > canvas.height || circle.y - circle.radius < 0) {
+                circle.dy = -circle.dy;
+            }
+        });
+    }
+
+    // Animation loop
+    function animate() {
+        updateCircles();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
+
 </body>
 </html>
