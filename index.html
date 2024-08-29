@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <canvas id="mathCanvas"></canvas>
+
     <h1>Welcome to My Website!</h1>
     <img src="TediRamaj_MainPic.jpg" alt="Tedi Ramaj" style="width:150px;height:150px;">
     <p>This is the personal website of Tedi Ramaj.</p>
@@ -18,5 +20,28 @@
             <li><a href="other_projects.html">Other Projects</a></li>
         </ul>
     </nav>
+
+    <script>
+        const canvas = document.getElementById('mathCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+        for (let i = 0; i < 1000; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const radius = Math.random() * 2;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+            ctx.stroke();
+        }
+    </script>
 </body>
 </html>
