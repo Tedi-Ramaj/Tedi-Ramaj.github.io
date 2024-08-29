@@ -1,25 +1,34 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-h1 {
+#mathCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Places the canvas behind other content */
+}
+
+.content {
+    position: relative;
+    z-index: 1; /* Ensures content appears above the canvas */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    height: 100vh; /* Makes the content container fill the viewport height */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
     color: #333;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #0066cc;
+img {
+    border-radius: 50%;
+    margin-bottom: 20px;
 }
