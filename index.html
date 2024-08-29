@@ -9,81 +9,83 @@
 <body>
     <canvas id="mathCanvas"></canvas>
 
-    <h1>Welcome to My Website!</h1>
-    <img src="TediRamaj_MainPic.jpg" alt="Tedi Ramaj" style="width:150px;height:150px;">
-    <p>This is the personal website of Tedi Ramaj.</p>
-    
-    <nav>
-        <ul>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
-            <li><a href="other_projects.html">Other Projects</a></li>
-        </ul>
-    </nav>
+    <div class="content">
+        <h1>Welcome to My Website!</h1>
+        <img src="TediRamaj_MainPic.jpg" alt="Tedi Ramaj" style="width:150px;height:150px;">
+        <p>This is the personal website of Tedi Ramaj.</p>
+        
+        <nav>
+            <ul>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="other_projects.html">Other Projects</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <script>
-    const canvas = document.getElementById('mathCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
+        const canvas = document.getElementById('mathCanvas');
+        const ctx = canvas.getContext('2d');
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    const circles = [];
-
-    // Create Circle objects with random positions and velocities
-    function createCircles(numCircles) {
-        for (let i = 0; i < numCircles; i++) {
-            const circle = {
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1,
-                dx: (Math.random() - 0.5) * 2, // random velocity in x
-                dy: (Math.random() - 0.5) * 2  // random velocity in y
-            };
-            circles.push(circle);
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    }
 
-    createCircles(1000);
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-    // Function to update the position of circles
-    function updateCircles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+        const circles = [];
 
-        circles.forEach(circle => {
-            // Draw the circle
+        function createCircle() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const radius = Math.random() * 5;
+            const dx = (Math.random() - 0.5) * 2;
+            const dy = (Math.random() - 0.5) * 2;
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+
+            circles.push({ x, y, radius, dx, dy, color });
+        }
+
+        function drawCircle(circle) {
             ctx.beginPath();
-            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, true);
-            ctx.stroke();
+            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+            ctx.fillStyle = circle.color;
+            ctx.fill();
+            ctx.closePath();
+        }
 
-            // Update the circle's position
+        function updateCircle(circle) {
             circle.x += circle.dx;
             circle.y += circle.dy;
 
-            // Bounce off the edges of the canvas
             if (circle.x + circle.radius > canvas.width || circle.x - circle.radius < 0) {
                 circle.dx = -circle.dx;
             }
+
             if (circle.y + circle.radius > canvas.height || circle.y - circle.radius < 0) {
                 circle.dy = -circle.dy;
             }
-        });
-    }
+        }
 
-    // Animation loop
-    function animate() {
-        updateCircles();
-        requestAnimationFrame(animate);
-    }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            circles.forEach(circle => {
+                updateCircle(circle);
+                drawCircle(circle);
+            });
 
-    animate();
-</script>
+            requestAnimationFrame(animate);
+        }
 
+        for (let i = 0; i < 100; i++) {
+            createCircle();
+        }
+
+        animate();
+    </script>
 </body>
 </html>
+
