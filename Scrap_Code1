@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Research - Tedi Ramaj</title>
+    
+</head>
+<body>
+
+    <canvas id="mathCanvas"></canvas>
+    
+    <div class="content">
+        <h1>Research</h1>
+        
+        <section class="publications">
+            <article>
+                <h2>On the Treatment of Melanoma: A Mathematical Model of Oncolytic Virotherapy</h2>
+                <p><strong>Authors:</strong> Tedi Ramaj and Xingfu Zou.</p>
+                <p><strong>Journal:</strong> Mathematical Biosciences, 2023</p>
+                <p><a href="https://www.sciencedirect.com/science/article/pii/S002555642300113X?casa_token=LKoDtApzaYAAAAAA:wKDmBfl2uBTyJyFJecFaNJp53u6z5tFGlhk6XVynGNgWWF_H9CLDLdRCBl2_GUWiG_4MvlWu4Hs" target="_blank">Read Full Article</a></p>
+                <p>We develop and analyze a spatial differential equation of oncolytic virotherapy as a treatment modality for melanoma. What are the preferential characteristics for such a virus? Find out here!</p>
+            </article>
+
+            <article>
+                <h2>Workplace Absenteeism due to COVID-19 and Influenza across Canada: A Mathematical Model</h2>
+                <p><strong>Authors:</strong> W.S. Avusuglo, Rahele Mosleh, Tedi Ramaj, Ao Li, Sileshi Sintayehu Sharbayta, Abdoul Aziz Fall, Srijana Ghimire, Fenglin Shi, Jason K.H. Lee h, Edward Thommes h , Thomas Shin h, Jianhong Wu.</p>
+                <p><strong>Journal:</strong> Journal of Theoretical Biology, 2023</p>
+                <p><a href="https://www.sciencedirect.com/science/article/abs/pii/S002251932300156X" target="_blank">Read Full Article</a></p>
+                <p>If you're curious about how we can quantify the impact of co-circulating infectious diseases on workplace absenteeism, you've come to the right place!</p>
+            </article>
+
+            <article>
+                <h2>On the Mathematical Modelling of Competitive Invasive Weed Dynamics</h2>
+                <p><strong>Authors:</strong> Tedi Ramaj.</p>
+                <p><strong>Journal:</strong> Bulletin of Mathematical Biology, 2023</p>
+                <p><a href="https://link.springer.com/article/10.1007/s11538-020-00825-9" target="_blank">Read Full Article</a></p>
+                <p>How can we use partial differential equation modelling to study the spreading of invasive weeds and their competition with native plants? It's plantastic.</p>
+            </article>
+
+        </section>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="other_projects.html">Other Projects</a></li>
+            </ul>
+        </nav>
+
+         <div style="height: 2000px;"></div>
+        
+    </div>
+
+    <script>
+        const canvas = document.getElementById('mathCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const integrals = [];
+
+        function createIntegral() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const size = Math.random() * 30 + 20; // Random size between 20 and 50
+            const dx = (Math.random() - 0.5) * 2;
+            const dy = (Math.random() - 0.5) * 2;
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+
+            integrals.push({ x, y, size, dx, dy, color });
+        }
+
+        function drawIntegral(integral) {
+            ctx.font = `${integral.size}px Arial`;
+            ctx.fillStyle = integral.color;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('∫', integral.x, integral.y);
+        }
+
+        function updateIntegral(integral) {
+            integral.x += integral.dx;
+            integral.y += integral.dy;
+
+            if (integral.x + integral.size > canvas.width || integral.x - integral.size < 0) {
+                integral.dx = -integral.dx;
+            }
+
+            if (integral.y + integral.size > canvas.height || integral.y - integral.size < 0) {
+                integral.dy = -integral.dy;
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            integrals.forEach(integral => {
+                updateIntegral(integral);
+                drawIntegral(integral);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        for (let i = 0; i < 15; i++) {
+            createIntegral();
+        }
+
+        animate();
+    </script> 
+    
+</body>
+</html>
