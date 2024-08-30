@@ -48,53 +48,53 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        const circles = [];
+        const integrals = [];
 
-        function createCircle() {
+        function createIntegral() {
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height;
-            const radius = Math.random() * 5;
+            const size = Math.random() * 30 + 20; // Random size between 20 and 50
             const dx = (Math.random() - 0.5) * 2;
             const dy = (Math.random() - 0.5) * 2;
             const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
-            circles.push({ x, y, radius, dx, dy, color });
+            integrals.push({ x, y, size, dx, dy, color });
         }
 
-        function drawCircle(circle) {
-            ctx.beginPath();
-            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
-            ctx.fillStyle = circle.color;
-            ctx.fill();
-            ctx.closePath();
+        function drawIntegral(integral) {
+            ctx.font = `${integral.size}px Arial`;
+            ctx.fillStyle = integral.color;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('∫', integral.x, integral.y);
         }
 
-        function updateCircle(circle) {
-            circle.x += circle.dx;
-            circle.y += circle.dy;
+        function updateIntegral(integral) {
+            integral.x += integral.dx;
+            integral.y += integral.dy;
 
-            if (circle.x + circle.radius > canvas.width || circle.x - circle.radius < 0) {
-                circle.dx = -circle.dx;
+            if (integral.x + integral.size > canvas.width || integral.x - integral.size < 0) {
+                integral.dx = -integral.dx;
             }
 
-            if (circle.y + circle.radius > canvas.height || circle.y - circle.radius < 0) {
-                circle.dy = -circle.dy;
+            if (integral.y + integral.size > canvas.height || integral.y - integral.size < 0) {
+                integral.dy = -integral.dy;
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            circles.forEach(circle => {
-                updateCircle(circle);
-                drawCircle(circle);
+            integrals.forEach(integral => {
+                updateIntegral(integral);
+                drawIntegral(integral);
             });
 
             requestAnimationFrame(animate);
         }
 
         for (let i = 0; i < 100; i++) {
-            createCircle();
+            createIntegral();
         }
 
         animate();
