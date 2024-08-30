@@ -100,7 +100,7 @@ h1 {
 
 /* Navigation Bar Styling */
 .navbar {
-    background-color: #1e4a7d; /* Background color */
+    background-color: #1e4a7d; /* Darker blue color */
     padding: 10px 0;
     text-align: center;
 }
@@ -114,6 +114,15 @@ h1 {
 .navbar ul li {
     display: inline;
     margin: 0 15px;
+    position: relative;
+}
+
+/* Add divider line */
+.navbar ul li:not(:last-child)::after {
+    content: '|';
+    color: #fff; /* Color of the divider */
+    margin-left: 15px;
+    font-size: 1.5em;
 }
 
 .navbar a {
@@ -126,5 +135,3 @@ h1 {
 .navbar a:hover {
     text-decoration: underline;
 }
-
-
