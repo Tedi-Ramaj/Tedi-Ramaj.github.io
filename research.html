@@ -5,10 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Research - Tedi Ramaj</title>
-    
+    <style>
+        /* Ensure the canvas is fixed and not covering the content */
+        #mathCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Make sure it's behind the content */
+        }
+
+        /* Basic styles for the content and navbar */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            position: relative;
+            padding: 20px;
+            z-index: 1; /* Ensure content is above the background animation */
+        }
+
+        .navbar {
+            background-color: #1e4a7d;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2; /* Ensure navbar is above content */
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.2em;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            margin-top: 60px; /* Adjust based on navbar height */
+        }
+
+        .publications {
+            margin-top: 20px;
+        }
+
+        .publication {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-
     <canvas id="mathCanvas"></canvas>
     
     <div class="content">
@@ -38,7 +104,6 @@
                 <p><a href="https://link.springer.com/article/10.1007/s11538-020-00825-9" target="_blank">Read Full Article</a></p>
                 <p>How can we use partial differential equation modelling to study the spreading of invasive weeds and their competition with native plants? It's plantastic.</p>
             </article>
-
         </section>
 
         <!-- Navigation Bar -->
@@ -49,8 +114,6 @@
                 <li><a href="other_projects.html">Other Projects</a></li>
             </ul>
         </nav>
-
-         <div style="height: 2000px;"></div>
         
     </div>
 
@@ -117,6 +180,6 @@
 
         animate();
     </script>
-    
 </body>
 </html>
+
