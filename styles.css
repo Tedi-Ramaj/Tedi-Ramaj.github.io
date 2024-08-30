@@ -46,8 +46,27 @@ h1 {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a shadow */
 }
 
-/* Optional: Add a subtle animation */
+
 h1 {
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+h2 {
+    font-family: 'Lobster', cursive; 
+    font-size: 2em; 
+    color: #ff6f61; 
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+    background: linear-gradient(45deg, #ff6f61, #ffcc33); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+}
+
+
+h2 {
     animation: fadeIn 2s ease-in-out;
 }
 
