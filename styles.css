@@ -61,3 +61,40 @@ h1 {
         opacity: 1;
     }
 }
+
+.publications {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.publications article {
+    margin-bottom: 30px;
+}
+
+.publications h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.8em;
+    color: #2e86de;
+    margin-bottom: 10px;
+}
+
+.publications p {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: #333;
+    line-height: 1.5;
+}
+
+.publications a {
+    color: #ff6f61;
+    text-decoration: none;
+}
+
+.publications a:hover {
+    text-decoration: underline;
+}
+
