@@ -5,58 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Research - Tedi Ramaj</title>
-
-    <style>
-        /* Background Animation Container */
-        .background-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place behind the main content */
-            overflow: hidden;
-            pointer-events: none; /* Allow clicks to pass through */
-        }
-
-        /* Integral Symbols Animation */
-        .background-animation::before,
-        .background-animation::after {
-            content: '∫';
-            font-family: 'Arial', sans-serif; /* Font for integral symbol */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            animation: moveIntegral 10s linear infinite;
-        }
-
-        .background-animation::before {
-            font-size: 3em; /* Adjust size */
-            color: rgba(0, 0, 0, 0.1); /* Light color */
-        }
-
-        .background-animation::after {
-            content: '∫';
-            font-size: 2em; /* Adjust size */
-            color: rgba(0, 0, 0, 0.05); /* Slightly lighter color */
-            animation: moveIntegral 12s linear infinite;
-            opacity: 0.3; /* Slightly more transparent */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes moveIntegral {
-            0% {
-                transform: translateX(-100%) translateY(-100%);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%);
-            }
-        }
-    </style>
     
 </head>
 <body>
@@ -86,5 +34,70 @@
         </nav>
         
     </div>
+
+    <script>
+        const canvas = document.getElementById('mathCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const circles = [];
+
+        function createCircle() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const radius = Math.random() * 5;
+            const dx = (Math.random() - 0.5) * 2;
+            const dy = (Math.random() - 0.5) * 2;
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+
+            circles.push({ x, y, radius, dx, dy, color });
+        }
+
+        function drawCircle(circle) {
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+            ctx.fillStyle = circle.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function updateCircle(circle) {
+            circle.x += circle.dx;
+            circle.y += circle.dy;
+
+            if (circle.x + circle.radius > canvas.width || circle.x - circle.radius < 0) {
+                circle.dx = -circle.dx;
+            }
+
+            if (circle.y + circle.radius > canvas.height || circle.y - circle.radius < 0) {
+                circle.dy = -circle.dy;
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            circles.forEach(circle => {
+                updateCircle(circle);
+                drawCircle(circle);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        for (let i = 0; i < 100; i++) {
+            createCircle();
+        }
+
+        animate();
+    </script>
+    
 </body>
 </html>
