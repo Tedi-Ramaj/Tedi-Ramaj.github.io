@@ -17,7 +17,7 @@ body {
 .content {
     position: relative;
     z-index: 1; /* Ensures content appears above the canvas */
-    display: block;
+    display: flex;
     flex-direction: column;
     justify-content: center; /* Centers content vertically */
     align-items: center; /* Centers content horizontally */
@@ -26,7 +26,6 @@ body {
     padding: 20px;
     box-sizing: border-box;
     color: #333;
-    margin-top: 60px; 
 }
 
 img {
