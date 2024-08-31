@@ -1,7 +1,6 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-y: auto; 
     font-family: Arial, sans-serif;
 }
 
@@ -21,7 +20,7 @@ body {
     flex-direction: column;
     justify-content: center; /* Centers content vertically */
     align-items: center; /* Centers content horizontally */
-    height: auto; /* Makes the content container fill the viewport height */
+    height: 100vh; /* Makes the content container fill the viewport height */
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
