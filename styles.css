@@ -21,7 +21,7 @@ body {
     flex-direction: column;
     justify-content: center; /* Centers content vertically */
     align-items: center; /* Centers content horizontally */
-    height: 100vh; /* Makes the content container fill the viewport height */
+    height: auto; /* Makes the content container fill the viewport height */
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
