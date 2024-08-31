@@ -17,7 +17,7 @@ body {
 .content {
     position: relative;
     z-index: 1; /* Ensures content appears above the canvas */
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: center; /* Centers content vertically */
     align-items: center; /* Centers content horizontally */
